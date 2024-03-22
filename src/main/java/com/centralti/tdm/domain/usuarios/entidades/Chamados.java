@@ -34,7 +34,10 @@ public class Chamados {
     private String categoria;
 
     @Column(name = "status")
-    private String status;
+    private Integer status;
+
+    @Column(name = "excluido")
+    private Boolean excluido;
 
     @Lob
     @Column(name = "anexo", columnDefinition="BLOB")

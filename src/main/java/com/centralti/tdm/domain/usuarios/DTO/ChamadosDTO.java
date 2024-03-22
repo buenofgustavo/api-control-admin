@@ -12,14 +12,15 @@ public record ChamadosDTO(
 
         String id,
 
-
-        @NotBlank       String usuario_vinculado,
-        @NotNull        String titulo,
-        @NotNull        String descri,
-        @NotNull        String categoria,
-        @NotNull        String prioridade,
+                        String usuario_vinculado,
+                        String titulo,
+                        String descri,
+                        String categoria,
+                        String prioridade,
                         byte[] anexo,
-                        String status
+                        Integer status,
+                        Boolean excluido
+
 
 ) {
 
@@ -27,7 +28,7 @@ public record ChamadosDTO(
             this(
                     chamados.getId(),chamados.getUsuario_vinculado(), chamados.getTitulo(),
                     chamados.getDescri(), chamados.getCategoria(), chamados.getPrioridade(),
-                    chamados.getAnexo(), chamados.getStatus()
+                    chamados.getAnexo(), chamados.getStatus(), chamados.getExcluido()
             );
         }
 

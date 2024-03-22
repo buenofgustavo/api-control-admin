@@ -10,11 +10,11 @@ import java.util.List;
 public interface ChamadosInterface {
 
     void createChamados(ChamadosDTO chamadosDTO);
-    void editChamados(String id, Number status);
+    void editChamados(ChamadosDTO chamadosDTO);
     List<ChamadosDTO> FindAllChamados();
     ChamadosDTO findByChamados(String id);
     void deleteChamados(String id);
-
-
+    List<ChamadosDTO> findChamadosByStatus(Integer status);
+    List<ChamadosDTO> FindAllChamadosExcluidos();
 
 }
