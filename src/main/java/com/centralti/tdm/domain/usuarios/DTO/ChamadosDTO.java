@@ -1,12 +1,6 @@
 package com.centralti.tdm.domain.usuarios.DTO;
 
 import com.centralti.tdm.domain.usuarios.entidades.Chamados;
-import com.centralti.tdm.domain.usuarios.entidades.Usuario;
-import com.centralti.tdm.domain.usuarios.enums.perfis;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-
-import java.util.Set;
 
 public record ChamadosDTO(
 

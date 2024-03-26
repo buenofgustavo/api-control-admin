@@ -1,18 +1,13 @@
 package com.centralti.tdm.services.servicesimpl;
 
 import com.centralti.tdm.domain.usuarios.DTO.ChamadosDTO;
-import com.centralti.tdm.domain.usuarios.DTO.UsuarioDTO;
 import com.centralti.tdm.domain.usuarios.entidades.Chamados;
-import com.centralti.tdm.domain.usuarios.entidades.Usuario;
 import com.centralti.tdm.domain.usuarios.repositories.ChamadosRepository;
-import com.centralti.tdm.domain.usuarios.repositories.UsuarioRepository;
 import com.centralti.tdm.services.servicesinterface.ChamadosInterface;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

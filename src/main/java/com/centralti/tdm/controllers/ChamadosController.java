@@ -1,12 +1,8 @@
 package com.centralti.tdm.controllers;
 
 import com.centralti.tdm.domain.usuarios.DTO.ChamadosDTO;
-import com.centralti.tdm.domain.usuarios.DTO.UsuarioDTO;
-import com.centralti.tdm.domain.usuarios.entidades.Chamados;
-import com.centralti.tdm.domain.usuarios.repositories.UsuarioRepository;
 import com.centralti.tdm.errors.ErrorResponses;
 import com.centralti.tdm.services.servicesinterface.ChamadosInterface;
-import com.centralti.tdm.services.servicesinterface.UsuarioInterface;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -14,14 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/chamados")
 public class ChamadosController {
-
-    @Autowired
-    UsuarioRepository repository;
 
     @Autowired
     ChamadosInterface chamadosInterface;
