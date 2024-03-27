@@ -13,7 +13,8 @@ public record ChamadosDTO(
                         String prioridade,
                         byte[] anexo,
                         Integer status,
-                        Boolean excluido
+                        Boolean excluido,
+                        String atualizado_por
 
 
 ) {
@@ -22,7 +23,7 @@ public record ChamadosDTO(
             this(
                     chamados.getId(),chamados.getUsuario_vinculado(), chamados.getTitulo(),
                     chamados.getDescri(), chamados.getCategoria(), chamados.getPrioridade(),
-                    chamados.getAnexo(), chamados.getStatus(), chamados.getExcluido()
+                    chamados.getAnexo(), chamados.getStatus(), chamados.getExcluido(), chamados.getAtualizado_por()
             );
         }
 

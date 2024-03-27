@@ -2,7 +2,7 @@ package com.centralti.tdm.controllers;
 
 import com.centralti.tdm.domain.usuarios.DTO.ChamadosDTO;
 import com.centralti.tdm.errors.ErrorResponses;
-import com.centralti.tdm.services.servicesinterface.ChamadosInterface;
+import com.centralti.tdm.services.servicesinterface.ChamadosService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class ChamadosController {
 
     @Autowired
-    ChamadosInterface chamadosInterface;
+    ChamadosService chamadosInterface;
 
     @PostMapping("cadastrar")
     public ResponseEntity createChamados(@RequestBody @Valid ChamadosDTO chamadosDTO) {

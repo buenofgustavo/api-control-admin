@@ -14,6 +14,7 @@ import lombok.*;
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 public class Chamados {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
@@ -39,6 +40,9 @@ public class Chamados {
     @Column(name = "excluido")
     private Boolean excluido;
 
+    @Column(name = "atualizado_por")
+    private String atualizado_por;
+
     @Lob
     @Column(name = "anexo", columnDefinition="BLOB")
     private byte[] anexo; // Armazena o anexo como array de bytes
@@ -51,6 +55,7 @@ public class Chamados {
         this.categoria = chamadosDTO.categoria();
         this.prioridade = chamadosDTO.prioridade();
         this.anexo = chamadosDTO.anexo();
+        this.atualizado_por = chamadosDTO.atualizado_por();
     }
 
 }

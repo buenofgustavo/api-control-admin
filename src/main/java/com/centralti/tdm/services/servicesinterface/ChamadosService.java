@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public interface ChamadosInterface {
+public interface ChamadosService {
 
     void createChamados(ChamadosDTO chamadosDTO);
     void editChamados(ChamadosDTO chamadosDTO);

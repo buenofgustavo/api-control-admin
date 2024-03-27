@@ -7,5 +7,6 @@ CREATE TABLE chamados (
                           prioridade VARCHAR(255) NOT NULL,
                           status INT,
                           anexo VARBINARY(MAX),
-                          excluido BIT NULL
+                          excluido BIT NULL,
+                          atualizado_por varchar(255),
 );
