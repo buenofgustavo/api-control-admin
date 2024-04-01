@@ -6,15 +6,15 @@ public record ComputadoresDTO (
 
     String id,
 
-    String NomeUsuario,
+    String nomeUsuario,
 
-    String NomeComputador,
+    String nomeComputador,
 
-    String Localizacao,
+    String localizacao,
 
-    String MemoriaRAM,
+    String memoriaRam,
 
-    String CapacidadeArmazenamento,
+    String capacidadeArmazenamento,
 
     String marca,
 
@@ -22,21 +22,21 @@ public record ComputadoresDTO (
 
     String processador,
 
-    String SistemaOperacional,
+    String sistemaOperacional,
 
     String makroInstalado,
 
     String versaoMakro,
 
-    String EnderecoMAC
+    String enderecoMac
 
 ) {
     public ComputadoresDTO(Computadores computadores){
             this(
                     computadores.getId(),computadores.getNomeUsuario(), computadores.getNomeComputador(),
-                    computadores.getLocalizacao(), computadores.getMemoriaRAM(), computadores.getCapacidadeArmazenamento(),
+                    computadores.getLocalizacao(), computadores.getMemoriaRam(), computadores.getCapacidadeArmazenamento(),
                     computadores.getMarca(), computadores.getModelo(), computadores.getProcessador(), computadores.getSistemaOperacional(),
-                    computadores.getMakroInstalado(), computadores.getVersaoMakro(), computadores.getEnderecoMAC()
+                    computadores.getMakroInstalado(), computadores.getVersaoMakro(), computadores.getEnderecoMac()
             );
         }
     }

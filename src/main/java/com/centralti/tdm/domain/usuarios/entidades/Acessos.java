@@ -24,18 +24,23 @@ public class Acessos {
     @Column(name = "gmail")
     private String gmail;
 
-    @Column(name = "freteBras")
+    @Column(name = "frete_bras")
     private String freteBras;
 
     @Column(name = "zoho")
     private String zoho;
 
-    @Column(name = "szChat")
+    @Column(name = "sz_chat")
     private String szChat;
 
-    @Column(name = "centralTI")
-    private String centralTI;
+    @Column(name = "central_ti")
+    private String centralTi;
 
+    @Column(name = "criado_por")
+    private String criadoPor;
+
+    @Column(name = "atualizado_por ")
+    private String atualizadoPor;
 
     public Acessos(@Valid AcessosDTO acessosDTO) {
         this.id = acessosDTO.id();
@@ -44,6 +49,8 @@ public class Acessos {
         this.freteBras = acessosDTO.freteBras();
         this.zoho = acessosDTO.zoho();
         this.szChat = acessosDTO.szChat();
-        this.centralTI = acessosDTO.centralTI();
+        this.centralTi = acessosDTO.centralTi();
+        this.criadoPor = acessosDTO.criadoPor();
+        this.atualizadoPor = acessosDTO.atualizadoPor();
     }
 }

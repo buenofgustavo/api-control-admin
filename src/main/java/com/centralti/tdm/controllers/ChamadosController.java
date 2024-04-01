@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.*;
 public class ChamadosController {
 
     @Autowired
-    ChamadosService chamadosInterface;
+    ChamadosService chamadosService;
 
     @PostMapping("cadastrar")
     public ResponseEntity createChamados(@RequestBody @Valid ChamadosDTO chamadosDTO) {
         try {
-            chamadosInterface.createChamados(chamadosDTO);
+            chamadosService.createChamados(chamadosDTO);
             return ResponseEntity.ok().build();
         } catch (RuntimeException e) {
             ErrorResponses errorResponses = new ErrorResponses(e.getMessage());
@@ -30,20 +30,20 @@ public class ChamadosController {
 
     @GetMapping("/listar")
     public ResponseEntity findAllChamados() {
-        var allChamados = chamadosInterface.FindAllChamados();
+        var allChamados = chamadosService.FindAllChamados();
         return ResponseEntity.ok(allChamados);
     }
 
     @GetMapping("/listar-excluidos")
     public ResponseEntity findAllChamadosExcluidos() {
-        var allChamados = chamadosInterface.FindAllChamadosExcluidos();
+        var allChamados = chamadosService.FindAllChamadosExcluidos();
         return ResponseEntity.ok(allChamados);
     }
 
     @GetMapping("listar/{id}")
     public ResponseEntity findByChamados(@PathVariable String id){
         try {
-            var chamados = chamadosInterface.findByChamados(id);
+            var chamados = chamadosService.findByChamados(id);
             return ResponseEntity.ok(chamados);
         } catch (EntityNotFoundException e) {
             ErrorResponses errorResponses = new ErrorResponses(e.getMessage());
@@ -53,7 +53,7 @@ public class ChamadosController {
 
     @GetMapping("/listar-status/{status}")
     public ResponseEntity findChamadosByStatus(@PathVariable Integer status) {
-        var allChamados = chamadosInterface.findChamadosByStatus(status);
+        var allChamados = chamadosService.findChamadosByStatus(status);
         return ResponseEntity.ok(allChamados);
     }
 
@@ -61,7 +61,7 @@ public class ChamadosController {
     @Transactional
     public ResponseEntity deleteChamados(@PathVariable String id){
         try {
-            chamadosInterface.deleteChamados(id);
+            chamadosService.deleteChamados(id);
             return ResponseEntity.ok().build();
         } catch (EntityNotFoundException e) {
             ErrorResponses errorResponses = new ErrorResponses(e.getMessage());
@@ -73,7 +73,7 @@ public class ChamadosController {
     public ResponseEntity editChamados(@RequestBody @Valid ChamadosDTO chamadosDTO){
 
             try {
-                chamadosInterface.editChamados(chamadosDTO);
+                chamadosService.editChamados(chamadosDTO);
                 return ResponseEntity.ok().build();
             } catch (RuntimeException e) {
                 ErrorResponses errorResponses = new ErrorResponses(e.getMessage());

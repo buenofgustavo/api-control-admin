@@ -21,13 +21,17 @@ public record AcessosDTO (
 
     String szChat,
 
-    String centralTI
+    String centralTi,
+
+    String criadoPor,
+
+    String atualizadoPor
 
 ) {
     public AcessosDTO(Acessos acessos){
             this(
                     acessos.getId(), acessos.getVr(), acessos.getGmail(), acessos.getFreteBras(), acessos.getZoho(),
-                    acessos.getSzChat(), acessos.getCentralTI()
+                    acessos.getSzChat(), acessos.getCentralTi(), acessos.getCriadoPor(), acessos.getAtualizadoPor()
             );
     }
 

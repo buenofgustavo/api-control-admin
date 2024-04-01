@@ -6,8 +6,8 @@ import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.*;
 
-@Table(name = "uniqueComputadores")
-@Entity(name = "uniqueComputadores")
+@Table(name = "unique_computadores")
+@Entity(name = "unique_computadores")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,20 +18,20 @@ public class Computadores {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @Column(name = "NomeUsuario")
-    private String NomeUsuario;
+    @Column(name = "nome_usuario")
+    private String nomeUsuario;
 
-    @Column(name = "NomeComputador")
-    private String NomeComputador;
+    @Column(name = "nome_computador")
+    private String nomeComputador;
 
-    @Column(name = "Localizacao")
-    private String Localizacao;
+    @Column(name = "localizacao")
+    private String localizacao;
 
-    @Column(name = "MemoriaRAM")
-    private String MemoriaRAM;
+    @Column(name = "memoria_ram")
+    private String memoriaRam;
 
-    @Column(name = "CapacidadeArmazenamento")
-    private String CapacidadeArmazenamento;
+    @Column(name = "capacidade_armazenamento")
+    private String capacidadeArmazenamento;
 
     @Column(name = "marca")
     private String marca;
@@ -42,32 +42,32 @@ public class Computadores {
     @Column(name = "processador")
     private String processador;
 
-    @Column(name = "SistemaOperacional")
-    private String SistemaOperacional;
+    @Column(name = "sistema_operacional")
+    private String sistemaOperacional;
 
-    @Column(name = "makroInstalado")
+    @Column(name = "makro_instalado")
     private String makroInstalado;
 
-    @Column(name = "versaoMakro")
+    @Column(name = "versao_makro")
     private String versaoMakro;
 
-    @Column(name = "EnderecoMAC")
-    private String EnderecoMAC;
+    @Column(name = "endereco_mac")
+    private String enderecoMac;
 
     public Computadores(@Valid ComputadoresDTO computadoresDTO) {
         this.id = computadoresDTO.id();
-        this.NomeUsuario = computadoresDTO.NomeUsuario();
-        this.NomeComputador = computadoresDTO.NomeComputador();
-        this.Localizacao = computadoresDTO.Localizacao();
-        this.MemoriaRAM = computadoresDTO.MemoriaRAM();
-        this.CapacidadeArmazenamento = computadoresDTO.CapacidadeArmazenamento();
+        this.nomeUsuario = computadoresDTO.nomeUsuario();
+        this.nomeComputador = computadoresDTO.nomeComputador();
+        this.localizacao = computadoresDTO.localizacao();
+        this.memoriaRam = computadoresDTO.memoriaRam();
+        this.capacidadeArmazenamento = computadoresDTO.capacidadeArmazenamento();
         this.marca = computadoresDTO.marca();
         this.modelo = computadoresDTO.modelo();
         this.processador = computadoresDTO.processador();
-        this.SistemaOperacional = computadoresDTO.SistemaOperacional();
+        this.sistemaOperacional = computadoresDTO.sistemaOperacional();
         this.makroInstalado = computadoresDTO.makroInstalado();
         this.versaoMakro = computadoresDTO.versaoMakro();
-        this.EnderecoMAC = computadoresDTO.EnderecoMAC();
+        this.enderecoMac = computadoresDTO.enderecoMac();
     }
 
 }

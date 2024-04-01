@@ -42,6 +42,9 @@ public class ChamadosServiceImpl implements ChamadosService {
             String emailUsuario = SecurityContextHolder.getContext().getAuthentication().getName();
             chamados.setAtualizado_por(emailUsuario);
             chamados.setStatus(status);
+
+            chamadosRepository.save(chamados);
+
         } else {
             throw new EntityNotFoundException();
         }
@@ -63,7 +66,7 @@ public class ChamadosServiceImpl implements ChamadosService {
 
     public ChamadosDTO findByChamados(String id) {
         Optional<Chamados> chamadosOptional = chamadosRepository.findById(id);
-        Chamados chamados = chamadosOptional.orElseThrow(() -> new EntityNotFoundException("Colaborador não localizado"));
+        Chamados chamados = chamadosOptional.orElseThrow(() -> new EntityNotFoundException("Chamado não localizado"));
         return new ChamadosDTO(chamados);
     }
 
