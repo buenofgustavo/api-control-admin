@@ -30,8 +30,31 @@ public class ComputadoresController {
     }
 
     @GetMapping("/listar")
-    public ResponseEntity findChamadosByStatus() {
+    public ResponseEntity findComputadoresByStatus() {
         var allChamados = computadoresService.FindAllComputadores();
         return ResponseEntity.ok(allChamados);
     }
+
+    @GetMapping("listar-com-usuario")
+    public ResponseEntity FindAllComputadorComUsuario(){
+        try {
+            var computador = computadoresService.FindAllComputadorComUsuario();
+            return ResponseEntity.ok(computador);
+        } catch (EntityNotFoundException e) {
+            ErrorResponses errorResponses = new ErrorResponses(e.getMessage());
+            return ResponseEntity.badRequest().body(errorResponses);
+        }
+    }
+
+    @GetMapping("listar-sem-usuario")
+    public ResponseEntity FindAllComputadorSemUsuario(){
+        try {
+            var computador = computadoresService.FindAllComputadorSemUsuario();
+            return ResponseEntity.ok(computador);
+        } catch (EntityNotFoundException e) {
+            ErrorResponses errorResponses = new ErrorResponses(e.getMessage());
+            return ResponseEntity.badRequest().body(errorResponses);
+        }
+    }
+
 }

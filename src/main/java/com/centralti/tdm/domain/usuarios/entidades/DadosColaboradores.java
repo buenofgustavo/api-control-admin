@@ -1,8 +1,7 @@
 package com.centralti.tdm.domain.usuarios.entidades;
 
 
-import com.centralti.tdm.domain.usuarios.DTO.ChamadosDTO;
-import com.centralti.tdm.domain.usuarios.DTO.ColaboradoresDTO;
+import com.centralti.tdm.domain.usuarios.DTO.DadosColaboradoresDTO;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.*;
@@ -14,7 +13,7 @@ import lombok.*;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
-public class Colaboradores {
+public class DadosColaboradores {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
@@ -46,7 +45,17 @@ public class Colaboradores {
     @Column(name = "atualizado_por")
     private String atualizado_por;
 
-    public Colaboradores(@Valid ColaboradoresDTO colaboradoresDTO) {
+    @Column(name = "termo")
+    private Boolean termo;
+
+    @Column(name = "regime_contratacao")
+    private String regimeContratacao;
+
+    @Column(name = "status")
+    private Boolean status;
+
+
+    public DadosColaboradores(@Valid DadosColaboradoresDTO colaboradoresDTO) {
         this.id = colaboradoresDTO.id();
         this.nome = colaboradoresDTO.nome();
         this.numero = colaboradoresDTO.numero();
@@ -55,7 +64,11 @@ public class Colaboradores {
         this.cargo = colaboradoresDTO.cargo();
         this.departamento = colaboradoresDTO.departamento();
         this.computador = colaboradoresDTO.computador();
+        this.usuario_solicitante = colaboradoresDTO.usuario_solicitante();
         this.atualizado_por = colaboradoresDTO.atualizado_por();
+        this.termo = colaboradoresDTO.termo();
+        this.regimeContratacao = colaboradoresDTO.regimeContratacao();
+        this.status = colaboradoresDTO.status();
     }
 
 }

@@ -28,7 +28,11 @@ public record ComputadoresDTO (
 
     String versaoMakro,
 
-    String enderecoMac
+    String enderecoMac,
+
+    String userAtual,
+
+    String lastUser
 
 ) {
     public ComputadoresDTO(Computadores computadores){
@@ -36,7 +40,7 @@ public record ComputadoresDTO (
                     computadores.getId(),computadores.getNomeUsuario(), computadores.getNomeComputador(),
                     computadores.getLocalizacao(), computadores.getMemoriaRam(), computadores.getCapacidadeArmazenamento(),
                     computadores.getMarca(), computadores.getModelo(), computadores.getProcessador(), computadores.getSistemaOperacional(),
-                    computadores.getMakroInstalado(), computadores.getVersaoMakro(), computadores.getEnderecoMac()
+                    computadores.getMakroInstalado(), computadores.getVersaoMakro(), computadores.getEnderecoMac(), computadores.getUserAtual(), computadores.getLastUser()
             );
         }
     }

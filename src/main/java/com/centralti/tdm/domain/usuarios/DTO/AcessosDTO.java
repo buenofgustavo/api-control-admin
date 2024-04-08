@@ -11,6 +11,8 @@ public record AcessosDTO (
 
     String id,
 
+    String cpf,
+
     String vr,
 
     String gmail,
@@ -30,7 +32,7 @@ public record AcessosDTO (
 ) {
     public AcessosDTO(Acessos acessos){
             this(
-                    acessos.getId(), acessos.getVr(), acessos.getGmail(), acessos.getFreteBras(), acessos.getZoho(),
+                    acessos.getId(), acessos.getCpf(), acessos.getVr(), acessos.getGmail(), acessos.getFreteBras(), acessos.getZoho(),
                     acessos.getSzChat(), acessos.getCentralTi(), acessos.getCriadoPor(), acessos.getAtualizadoPor()
             );
     }

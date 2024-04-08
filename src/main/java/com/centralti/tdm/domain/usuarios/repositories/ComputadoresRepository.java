@@ -10,4 +10,6 @@ import java.util.List;
 public interface ComputadoresRepository extends JpaRepository<Computadores, String> {
     Computadores findByEnderecoMac(String EnderecoMac);
     List<Computadores> findAllBy();
+    List<Computadores> findAllByUserAtualIsNull();
+    List<Computadores> findAllByUserAtualIsNotNull();
 }

@@ -1,6 +1,5 @@
 package com.centralti.tdm.domain.usuarios.entidades;
 
-import com.centralti.tdm.domain.usuarios.DTO.ColaboradoresDTO;
 import com.centralti.tdm.domain.usuarios.DTO.ComputadoresDTO;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
@@ -54,6 +53,12 @@ public class Computadores {
     @Column(name = "endereco_mac")
     private String enderecoMac;
 
+    @Column(name = "user_atual")
+    private String userAtual;
+
+    @Column(name = "last_user")
+    private String lastUser;
+
     public Computadores(@Valid ComputadoresDTO computadoresDTO) {
         this.id = computadoresDTO.id();
         this.nomeUsuario = computadoresDTO.nomeUsuario();
@@ -68,6 +73,8 @@ public class Computadores {
         this.makroInstalado = computadoresDTO.makroInstalado();
         this.versaoMakro = computadoresDTO.versaoMakro();
         this.enderecoMac = computadoresDTO.enderecoMac();
+        this.userAtual = computadoresDTO.userAtual();
+        this.lastUser = computadoresDTO.lastUser();
     }
 
 }

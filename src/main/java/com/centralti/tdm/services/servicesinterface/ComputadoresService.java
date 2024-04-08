@@ -9,5 +9,7 @@ public interface ComputadoresService {
 
     List<ComputadoresDTO> FindAllComputadores();
     ComputadoresDTO findByComputadores(String MAC);
+    List<ComputadoresDTO> FindAllComputadorComUsuario();
+    List<ComputadoresDTO> FindAllComputadorSemUsuario();
 
 }

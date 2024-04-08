@@ -19,8 +19,8 @@ public class AcessosServiceImpl implements AcessosService {
     @Autowired
     AcessosRepository acessosRepository;
 
-    public AcessosDTO findByAcessos(String email){
-        Optional<Acessos> acessosOptional = acessosRepository.findByGmail(email);
+    public AcessosDTO findByAcessos(String cpf){
+        Optional<Acessos> acessosOptional = acessosRepository.findByCpf(cpf);
         Acessos acessos = acessosOptional.orElseThrow(() -> new EntityNotFoundException("Acessos não localizado"));
         return new AcessosDTO(acessos);
     }
@@ -38,7 +38,7 @@ public class AcessosServiceImpl implements AcessosService {
     @Override
     public void editAcessos(AcessosDTO acessosDTO){
 
-        Optional<Acessos> optionalAcessos = acessosRepository.findByGmail(acessosDTO.gmail());
+        Optional<Acessos> optionalAcessos = acessosRepository.findByCpf(acessosDTO.cpf());
         if(optionalAcessos.isPresent()){
             Acessos acessos = optionalAcessos.get();
 

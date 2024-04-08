@@ -18,6 +18,9 @@ public class Acessos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
+    @Column(name = "cpf")
+    private String cpf;
+
     @Column(name = "vr")
     private String vr;
 
@@ -44,6 +47,7 @@ public class Acessos {
 
     public Acessos(@Valid AcessosDTO acessosDTO) {
         this.id = acessosDTO.id();
+        this.cpf = acessosDTO.cpf();
         this.vr = acessosDTO.vr();
         this.gmail = acessosDTO.gmail();
         this.freteBras = acessosDTO.freteBras();

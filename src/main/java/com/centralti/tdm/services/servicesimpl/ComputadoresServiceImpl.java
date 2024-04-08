@@ -25,8 +25,8 @@ public class ComputadoresServiceImpl implements ComputadoresService {
 
     @Override
     public List<ComputadoresDTO> FindAllComputadores() {
-        List<Computadores> allChamados = computadoresRepository.findAllBy();
-        return allChamados.stream()
+        List<Computadores> allComputadores = computadoresRepository.findAllBy();
+        return allComputadores.stream()
                 .map(ComputadoresDTO::new)
                 .collect(Collectors.toList());
     }
@@ -36,4 +36,21 @@ public class ComputadoresServiceImpl implements ComputadoresService {
         Computadores computador = computadoresRepository.findByEnderecoMac(MAC);
         return new ComputadoresDTO(computador);
     }
+
+    @Override
+    public List<ComputadoresDTO> FindAllComputadorComUsuario() {
+        List<Computadores> allComputadores = computadoresRepository.findAllByUserAtualIsNotNull();
+        return allComputadores.stream()
+                .map(ComputadoresDTO::new)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ComputadoresDTO> FindAllComputadorSemUsuario() {
+        List<Computadores> allComputadores = computadoresRepository.findAllByUserAtualIsNull();
+        return allComputadores.stream()
+                .map(ComputadoresDTO::new)
+                .collect(Collectors.toList());
+    }
+
 }
