@@ -2,6 +2,7 @@ package com.centralti.tdm.domain.usuarios.entidades;
 
 import com.centralti.tdm.domain.usuarios.DTO.FeriasDTO;
 import com.centralti.tdm.domain.usuarios.DTO.GestaoAtivosDTO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.*;

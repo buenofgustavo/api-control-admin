@@ -1,15 +1,13 @@
 package com.centralti.tdm.services.servicesimpl;
 
-import com.centralti.tdm.domain.usuarios.DTO.AcessosDTO;
-import com.centralti.tdm.domain.usuarios.DTO.ComputadoresDTO;
-import com.centralti.tdm.domain.usuarios.DTO.DadosColaboradoresDTO;
-import com.centralti.tdm.domain.usuarios.DTO.SolicitacaoAssociadaColaboradorDTO;
+import com.centralti.tdm.domain.usuarios.DTO.*;
 import com.centralti.tdm.domain.usuarios.entidades.Computadores;
 import com.centralti.tdm.domain.usuarios.entidades.DadosColaboradores;
 import com.centralti.tdm.domain.usuarios.repositories.ComputadoresRepository;
 import com.centralti.tdm.domain.usuarios.repositories.DadosColaboradoresRepository;
 import com.centralti.tdm.services.servicesinterface.AcessosService;
 import com.centralti.tdm.services.servicesinterface.DadosColaboradoresService;
+import com.centralti.tdm.services.servicesinterface.FeriasService;
 import com.centralti.tdm.services.servicesinterface.SolicitacaoAssociadaColaboradorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -32,6 +30,9 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
 
     @Autowired
     SolicitacaoAssociadaColaboradorService solicitacaoAssociadaColaboradorService;
+
+    @Autowired
+    FeriasService feriasService;
 
     @Override
     public List<DadosColaboradoresDTO> FindAllColaboradoresAtivos() {
@@ -128,6 +129,8 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
             SolicitacaoAssociadaColaboradorDTO solicitacaoAssociadaColaboradorDTO = new SolicitacaoAssociadaColaboradorDTO(null, emailUsuario, colaboradoresDTO.nome(), colaboradoresDTO.numero(), colaboradoresDTO.cpf(), colaboradoresDTO.filial(), colaboradoresDTO.cargo(), colaboradoresDTO.departamento(), emailUsuario, status_em_aberto, tipo_acesso);
             solicitacaoAssociadaColaboradorService.createdSolicitacaoAssociadaColaborador(solicitacaoAssociadaColaboradorDTO);
 
+            FeriasDTO feriasDTO = new FeriasDTO(null, colaboradoresDTO.cpf(), null, null, emailUsuario);
+            feriasService.createdFerias(feriasDTO);
 
             AcessosDTO acessosDTO = new AcessosDTO(null, cpf, null, null, null, null, null, null, null, null);
             acessosService.createAcessos(acessosDTO);

@@ -1,16 +1,38 @@
 package com.centralti.tdm.infra.security.USER;
 
 public enum UserRole {
-    ADMIN("admin"),
-    USER("user");
+    ADMIN("ROLE_ADMIN", "Administrador"),
+    USUARIO("ROLE_USUARIO", "Usuário"),
+    DP("ROLE_DP", "DP"),
+    TI("ROLE_TI", "T.I");
 
-    private String role;
+    private String codigo;
+    private String descricao;
 
-    UserRole(String role){
-        this.role = role;
+    private UserRole(String codigo, String descricao) {
+        this.codigo = codigo;
+        this.descricao = descricao;
     }
 
-    public String getRole(){
-        return role;
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public static UserRole toEnum(String cod) {
+        if(cod == null) {
+            return null;
+        }
+
+        for (UserRole x: UserRole.values()) {
+            if(cod.equals(x.getCodigo())) {
+                return x;
+            }
+        }
+
+        throw new IllegalArgumentException("Perfil Inválido: " + cod);
     }
 }

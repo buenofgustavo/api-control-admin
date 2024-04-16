@@ -47,9 +47,6 @@ public class ColaboradorCompletoServiceImpl implements ColaboradorCompletoServic
         }
         return new ColaboradorCompletoDTO(newDados, newComputador, newAcessos);
 
-
-
-
     }
 
     @Override

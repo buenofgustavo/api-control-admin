@@ -11,5 +11,6 @@ public interface FeriasService {
     void createdFerias(FeriasDTO feriasDTO);
     List<FeriasDTO> findByAll();
     FeriasDTO findByCpf(String cpf);
+    void editFerias(FeriasDTO feriasDTO);
 
 }

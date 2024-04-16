@@ -5,6 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.centralti.tdm.infra.security.USER.User;
+import com.centralti.tdm.infra.security.USER.UserRole;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,8 @@ public class TokenService {
             String token = JWT.create()
                     .withIssuer("api-central-ti")
                     .withSubject(user.getLogin())
+                    .withClaim("name", user.getName())
+                    .withClaim("profile", user.getRole().getCodigo()) // Supondo que getName() retorna o nome do papel como uma string
                     .withExpiresAt(genExpirationDate())
                     .sign(algorithm);
             return token;
