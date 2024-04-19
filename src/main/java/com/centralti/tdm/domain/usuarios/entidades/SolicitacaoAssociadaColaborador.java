@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 
 @Table(name = "solicitacao_colaboradores")
 @Entity(name = "solicitacaoColaboradores")
@@ -49,6 +51,9 @@ public class SolicitacaoAssociadaColaborador {
     @Column(name = "tipo")
     private String tipo;
 
+    @Column(name = "data_abertura")
+    private LocalDateTime dataAbertura;
+
 
     public SolicitacaoAssociadaColaborador(@Valid SolicitacaoAssociadaColaboradorDTO solicitacaoAssociadaColaboradorDTO) {
         this.id = solicitacaoAssociadaColaboradorDTO.id();
@@ -62,6 +67,7 @@ public class SolicitacaoAssociadaColaborador {
         this.atualizado_por = solicitacaoAssociadaColaboradorDTO.atualizado_por();
         this.status = solicitacaoAssociadaColaboradorDTO.status();
         this.tipo = solicitacaoAssociadaColaboradorDTO.tipo();
+        this.dataAbertura = solicitacaoAssociadaColaboradorDTO.dataAbertura();
     }
 
 }

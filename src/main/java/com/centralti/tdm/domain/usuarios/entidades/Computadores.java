@@ -59,6 +59,12 @@ public class Computadores {
     @Column(name = "last_user")
     private String lastUser;
 
+    @Column(name = "nome_user_atual")
+    private String nomeUserAtual;
+
+    @Column(name = "nome_last_user")
+    private String nomeLastUser;
+
     public Computadores(@Valid ComputadoresDTO computadoresDTO) {
         this.id = computadoresDTO.id();
         this.nomeUsuario = computadoresDTO.nomeUsuario();
@@ -75,6 +81,8 @@ public class Computadores {
         this.enderecoMac = computadoresDTO.enderecoMac();
         this.userAtual = computadoresDTO.userAtual();
         this.lastUser = computadoresDTO.lastUser();
+        this.nomeUserAtual = computadoresDTO.nomeUserAtual();
+        this.nomeLastUser = computadoresDTO.nomeLastUser();
     }
 
 }

@@ -68,7 +68,12 @@ public class SolicitacaoAssociadaColaboradorServiceImpl implements SolicitacaoAs
 
     @Override
     public void editSolicitacaoAssociadaColaborador(Integer id, String status) {
+
         SolicitacaoAssociadaColaborador solicitacaoAssociadaColaborador = solicitacaoAssociadaColaboradorRepository.findById(id);
+
+        if(solicitacaoAssociadaColaborador.getStatus().equals(status)){
+            throw new RuntimeException("Este status já está atribuído");
+        }
 
         String emailUsuario = SecurityContextHolder.getContext().getAuthentication().getName();
 

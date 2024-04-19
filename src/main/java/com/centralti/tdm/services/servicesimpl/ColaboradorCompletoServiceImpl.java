@@ -43,7 +43,7 @@ public class ColaboradorCompletoServiceImpl implements ColaboradorCompletoServic
             Computadores computador = computadoresRepository.findByEnderecoMac(dados.getComputador());
             newComputador = new ComputadoresDTO(computador);
         } else {
-            newComputador = new ComputadoresDTO("", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            newComputador = new ComputadoresDTO("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
         }
         return new ColaboradorCompletoDTO(newDados, newComputador, newAcessos);
 
@@ -68,7 +68,7 @@ public class ColaboradorCompletoServiceImpl implements ColaboradorCompletoServic
                 Computadores computador = computadoresRepository.findByEnderecoMac(dados.getComputador());
                 newComputador = new ComputadoresDTO(computador);
             } else {
-                newComputador = new ComputadoresDTO("", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                newComputador = new ComputadoresDTO("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
             }
 
             ColaboradorCompletoDTO colaboradorCompletoDTO = new ColaboradorCompletoDTO(newDados, newComputador, newAcessos);

@@ -32,7 +32,11 @@ public record ComputadoresDTO (
 
     String userAtual,
 
-    String lastUser
+    String lastUser,
+
+    String nomeUserAtual,
+
+    String nomeLastUser
 
 ) {
     public ComputadoresDTO(Computadores computadores){
@@ -40,7 +44,8 @@ public record ComputadoresDTO (
                     computadores.getId(),computadores.getNomeUsuario(), computadores.getNomeComputador(),
                     computadores.getLocalizacao(), computadores.getMemoriaRam(), computadores.getCapacidadeArmazenamento(),
                     computadores.getMarca(), computadores.getModelo(), computadores.getProcessador(), computadores.getSistemaOperacional(),
-                    computadores.getMakroInstalado(), computadores.getVersaoMakro(), computadores.getEnderecoMac(), computadores.getUserAtual(), computadores.getLastUser()
+                    computadores.getMakroInstalado(), computadores.getVersaoMakro(), computadores.getEnderecoMac(), computadores.getUserAtual(),
+                    computadores.getLastUser(), computadores.getNomeUserAtual(), computadores.getNomeLastUser()
             );
         }
     }

@@ -46,6 +46,8 @@ public class AcessosServiceImpl implements AcessosService {
             acessos.setGmail(acessosDTO.gmail());
             acessos.setFreteBras(acessosDTO.freteBras());
             acessos.setZoho(acessosDTO.zoho());
+            acessos.setSzChat(acessosDTO.szChat());
+            acessos.setCentralTi(acessosDTO.centralTi());
 
             String emailUsuario = SecurityContextHolder.getContext().getAuthentication().getName();
             acessos.setAtualizadoPor(emailUsuario);

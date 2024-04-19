@@ -12,6 +12,8 @@ CREATE TABLE unique_computadores (
                               processador VARCHAR(255),
                               sistema_operacional VARCHAR(255),
                               makro_instalado VARCHAR(255),
-                              versao_makro VARCHAR(255)
+                              versao_makro VARCHAR(255),
+                              nome_user_atual VARCHAR(255),
+                              nome_last_user VARCHAR(255)
 
 );

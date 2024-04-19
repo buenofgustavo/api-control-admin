@@ -3,6 +3,9 @@ package com.centralti.tdm.domain.usuarios.DTO;
 import com.centralti.tdm.domain.usuarios.entidades.DadosColaboradores;
 import com.centralti.tdm.domain.usuarios.entidades.SolicitacaoAssociadaColaborador;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public record SolicitacaoAssociadaColaboradorDTO(
 
         Integer id,
@@ -25,7 +28,9 @@ public record SolicitacaoAssociadaColaboradorDTO(
 
         String status,
 
-        String tipo
+        String tipo,
+
+        LocalDateTime dataAbertura
 
 ) {
 
@@ -34,7 +39,8 @@ public record SolicitacaoAssociadaColaboradorDTO(
                 solicitacaoAssociadaColaborador.getId(),solicitacaoAssociadaColaborador.getUsuario_solicitante(), solicitacaoAssociadaColaborador.getNome(),
                 solicitacaoAssociadaColaborador.getNumero(), solicitacaoAssociadaColaborador.getCpf(), solicitacaoAssociadaColaborador.getFilial(),
                 solicitacaoAssociadaColaborador.getCargo(), solicitacaoAssociadaColaborador.getDepartamento(),
-                solicitacaoAssociadaColaborador.getAtualizado_por(), solicitacaoAssociadaColaborador.getStatus(), solicitacaoAssociadaColaborador.getTipo()
+                solicitacaoAssociadaColaborador.getAtualizado_por(), solicitacaoAssociadaColaborador.getStatus(), solicitacaoAssociadaColaborador.getTipo(),
+                solicitacaoAssociadaColaborador.getDataAbertura()
         );
     }
 

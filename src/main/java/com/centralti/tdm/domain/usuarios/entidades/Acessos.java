@@ -42,8 +42,10 @@ public class Acessos {
     @Column(name = "criado_por")
     private String criadoPor;
 
-    @Column(name = "atualizado_por ")
+    @Column(name = "atualizado_por")
     private String atualizadoPor;
+
+
 
     public Acessos(@Valid AcessosDTO acessosDTO) {
         this.id = acessosDTO.id();

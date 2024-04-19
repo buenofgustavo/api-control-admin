@@ -111,7 +111,7 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
 
             String status = "Em aberto";
             String tipo = "Solicitação de acessos";
-            SolicitacaoAssociadaColaboradorDTO solicitacaoAssociadaColaboradorDTO = new SolicitacaoAssociadaColaboradorDTO(null,emailUsuario,colaboradoresDTO.nome(),colaboradoresDTO.numero(),colaboradoresDTO.cpf(),colaboradoresDTO.filial(),colaboradoresDTO.cargo(),colaboradoresDTO.departamento(),null,status, tipo);
+            SolicitacaoAssociadaColaboradorDTO solicitacaoAssociadaColaboradorDTO = new SolicitacaoAssociadaColaboradorDTO(null,emailUsuario,colaboradoresDTO.nome(),colaboradoresDTO.numero(),colaboradoresDTO.cpf(),colaboradoresDTO.filial(),colaboradoresDTO.cargo(),colaboradoresDTO.departamento(),null,status, tipo, null);
             solicitacaoAssociadaColaboradorService.createdSolicitacaoAssociadaColaborador(solicitacaoAssociadaColaboradorDTO);
 
             dadosColaboradoresRepository.save(existingColaborador);
@@ -126,7 +126,7 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
 
             String status_em_aberto = "Em aberto";
             String tipo_acesso = "Solicitação de acessos";
-            SolicitacaoAssociadaColaboradorDTO solicitacaoAssociadaColaboradorDTO = new SolicitacaoAssociadaColaboradorDTO(null, emailUsuario, colaboradoresDTO.nome(), colaboradoresDTO.numero(), colaboradoresDTO.cpf(), colaboradoresDTO.filial(), colaboradoresDTO.cargo(), colaboradoresDTO.departamento(), emailUsuario, status_em_aberto, tipo_acesso);
+            SolicitacaoAssociadaColaboradorDTO solicitacaoAssociadaColaboradorDTO = new SolicitacaoAssociadaColaboradorDTO(null, emailUsuario, colaboradoresDTO.nome(), colaboradoresDTO.numero(), colaboradoresDTO.cpf(), colaboradoresDTO.filial(), colaboradoresDTO.cargo(), colaboradoresDTO.departamento(), emailUsuario, status_em_aberto, tipo_acesso, null);
             solicitacaoAssociadaColaboradorService.createdSolicitacaoAssociadaColaborador(solicitacaoAssociadaColaboradorDTO);
 
             FeriasDTO feriasDTO = new FeriasDTO(null, colaboradoresDTO.cpf(), null, null, emailUsuario);
@@ -148,6 +148,10 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
             throw new RuntimeException("O computador com o endereço MAC fornecido não foi encontrado.");
         }
 
+        if(dadosColaboradores.getComputador() != null){
+            throw new RuntimeException("O colaborador já possui computador.");
+        }
+
         if (computadores.getUserAtual() != null) {
             // Se o computador já tiver um usuário atual, lança uma exceção ou trata o erro de outra forma
             throw new RuntimeException("Este computador já está vinculado a um usuário.");
@@ -160,7 +164,7 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
 
 
             computadores.setUserAtual(cpf);
-
+            computadores.setNomeUserAtual(dadosColaboradores.getNome());
             computadoresRepository.save(computadores);
 
             dadosColaboradoresRepository.save(dadosColaboradores);
@@ -186,8 +190,10 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
                 dadosColaboradores.setTermo(false);
 
                 computadores.setUserAtual(userVazio);
+                computadores.setNomeUserAtual(userVazio);
 
                 computadores.setLastUser(cpf);
+                computadores.setNomeLastUser(dadosColaboradores.getNome());
 
                 computadoresRepository.save(computadores);
             }
@@ -201,9 +207,14 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
 
     @Override
     public void desligamentoColaborador(String cpf) {
+
         DadosColaboradores dadosColaboradores = dadosColaboradoresRepository.findByCpf(cpf);
         String emailUsuario = SecurityContextHolder.getContext().getAuthentication().getName();
         dadosColaboradores.setAtualizado_por(emailUsuario);
+
+        if(!dadosColaboradores.getStatus()){
+            throw new RuntimeException("Este usuário já está desligado");
+        }
 
         Boolean status = false;
         dadosColaboradores.setStatus(status);
@@ -218,8 +229,10 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
             if (computadores != null) {
 
                 computadores.setUserAtual(userVazio);
+                computadores.setNomeUserAtual(userVazio);
 
                 computadores.setLastUser(cpf);
+                computadores.setNomeLastUser(dadosColaboradores.getNome());
 
                 computadoresRepository.save(computadores);
             }
@@ -227,7 +240,7 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
 
         String status_solicitacao = "Em aberto";
         String tipo_solicitacao = "Solicitação de desligamento";
-        SolicitacaoAssociadaColaboradorDTO solicitacaoAssociadaColaboradorDTO = new SolicitacaoAssociadaColaboradorDTO(null,dadosColaboradores.getNome(),emailUsuario,dadosColaboradores.getNumero(),dadosColaboradores.getCpf(),dadosColaboradores.getFilial(),dadosColaboradores.getCargo(),dadosColaboradores.getDepartamento(),emailUsuario,status_solicitacao, tipo_solicitacao);
+        SolicitacaoAssociadaColaboradorDTO solicitacaoAssociadaColaboradorDTO = new SolicitacaoAssociadaColaboradorDTO(null,dadosColaboradores.getNome(),emailUsuario,dadosColaboradores.getNumero(),dadosColaboradores.getCpf(),dadosColaboradores.getFilial(),dadosColaboradores.getCargo(),dadosColaboradores.getDepartamento(),emailUsuario,status_solicitacao, tipo_solicitacao, null);
         solicitacaoAssociadaColaboradorService.createdSolicitacaoAssociadaColaborador(solicitacaoAssociadaColaboradorDTO);
 
         // Define o computador do colaborador como vazio
@@ -250,7 +263,7 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
 
         String status_solicitacao = "Em aberto";
         String tipo_solicitacao = "Solicitação de mudança de cargo";
-        SolicitacaoAssociadaColaboradorDTO solicitacaoAssociadaColaboradorDTO = new SolicitacaoAssociadaColaboradorDTO(null,dadosColaboradores.getNome(),emailUsuario,dadosColaboradores.getNumero(),dadosColaboradores.getCpf(),dadosColaboradores.getFilial(),dadosColaboradores.getCargo(),dadosColaboradores.getDepartamento(),emailUsuario,status_solicitacao, tipo_solicitacao);
+        SolicitacaoAssociadaColaboradorDTO solicitacaoAssociadaColaboradorDTO = new SolicitacaoAssociadaColaboradorDTO(null,dadosColaboradores.getNome(),emailUsuario,dadosColaboradores.getNumero(),dadosColaboradores.getCpf(),dadosColaboradores.getFilial(),dadosColaboradores.getCargo(),dadosColaboradores.getDepartamento(),emailUsuario,status_solicitacao, tipo_solicitacao, null);
         solicitacaoAssociadaColaboradorService.createdSolicitacaoAssociadaColaborador(solicitacaoAssociadaColaboradorDTO);
 
 
