@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -65,4 +67,19 @@ public class GestaoAtivosServiceImpl implements GestaoAtivosService {
 
         gestaoAtivosRepository.save(gestaoAtivos);
     }
+
+    @Override
+    public void deletarAtivos(String id) {
+        Optional<GestaoAtivos> gestaoAtivosOptional = gestaoAtivosRepository.findById(id);
+
+        if (gestaoAtivosOptional.isPresent()) {
+            GestaoAtivos gestaoAtivos = gestaoAtivosOptional.get();
+            gestaoAtivosRepository.delete(gestaoAtivos);
+            // ou gestaoAtivosRepository.deleteById(id); se você tiver o método deleteById no seu repositório
+        } else {
+            // Lidar com o caso em que o objeto não é encontrado
+            throw new NoSuchElementException("Ativo não encontrada com o ID: " + id);
+        }
+    }
+
 }

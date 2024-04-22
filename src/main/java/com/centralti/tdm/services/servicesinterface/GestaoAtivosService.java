@@ -12,4 +12,5 @@ public interface GestaoAtivosService {
     List<GestaoAtivosDTO> findByAll();
     List<GestaoAtivosDTO> findByTipo(String tipo);
     void editAtivos(GestaoAtivosDTO gestaoAtivosDTO);
+    void deletarAtivos(String id);
 }

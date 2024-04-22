@@ -34,6 +34,12 @@ public class User implements UserDetails {
         this.name = name;
     }
 
+    public User(RegistersDTO registerDTO) {
+        this.login = registerDTO.id();
+        this.password = registerDTO.password();
+        this.role = registerDTO.role();
+        this.name = registerDTO.name();
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if(this.role == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));

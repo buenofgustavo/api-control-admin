@@ -30,12 +30,16 @@ public class ChatSolicitacoesColaboradores {
         @Column(name="user_vinculado")
         private String userVinculado;
 
+        @Column(name = "nome_user")
+        private String nomeUser;
+
         @Column(name="datahora")
         private LocalDateTime datahora;
 
         public ChatSolicitacoesColaboradores(ChatSolicitacoesColaboradoresDTO ChatSolicitacoesColaboradoresDTO){
             this.message = ChatSolicitacoesColaboradoresDTO.message();
             this.idVinculado = ChatSolicitacoesColaboradoresDTO.idVinculado();
+            this.nomeUser = ChatSolicitacoesColaboradoresDTO.nomeUser();
         }
 
 }

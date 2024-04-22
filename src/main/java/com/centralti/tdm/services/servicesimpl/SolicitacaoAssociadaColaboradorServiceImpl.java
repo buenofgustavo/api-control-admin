@@ -77,7 +77,7 @@ public class SolicitacaoAssociadaColaboradorServiceImpl implements SolicitacaoAs
 
         String emailUsuario = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        solicitacaoAssociadaColaborador.setUsuario_solicitante(emailUsuario);
+        solicitacaoAssociadaColaborador.setAtualizado_por(emailUsuario);
         solicitacaoAssociadaColaborador.setStatus(status);
 
         solicitacaoAssociadaColaboradorRepository.save(solicitacaoAssociadaColaborador);

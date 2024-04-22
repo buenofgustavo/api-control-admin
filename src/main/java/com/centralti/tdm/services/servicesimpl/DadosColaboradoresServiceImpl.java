@@ -274,6 +274,11 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
     public void termoAssinado(String cpf) {
         DadosColaboradores dadosColaboradores = dadosColaboradoresRepository.findByCpf(cpf);
 
+        if (dadosColaboradores.getTermo() == true) {
+            // Se o computador não for encontrado, lança uma exceção ou trata o erro de outra forma
+            throw new RuntimeException("O colaborador já possui termo assinado.");
+        }
+
         String emailUsuario = SecurityContextHolder.getContext().getAuthentication().getName();
         dadosColaboradores.setAtualizado_por(emailUsuario);
 

@@ -63,4 +63,15 @@ public class GestaoAtivosController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteAtivos(@PathVariable String id) {
+        try {
+            gestaoAtivosService.deletarAtivos(id);
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException e) {
+            ErrorResponses errorResponses = new ErrorResponses(e.getMessage());
+            return ResponseEntity.badRequest().body(errorResponses);
+        }
+    }
+
 }
