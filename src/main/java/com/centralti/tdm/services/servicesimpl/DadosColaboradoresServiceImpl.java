@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -111,7 +112,7 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
 
             String status = "Em aberto";
             String tipo = "Solicitação de acessos";
-            SolicitacaoAssociadaColaboradorDTO solicitacaoAssociadaColaboradorDTO = new SolicitacaoAssociadaColaboradorDTO(null,emailUsuario,colaboradoresDTO.nome(),colaboradoresDTO.numero(),colaboradoresDTO.cpf(),colaboradoresDTO.filial(),colaboradoresDTO.cargo(),colaboradoresDTO.departamento(),null,status, tipo, null);
+            SolicitacaoAssociadaColaboradorDTO solicitacaoAssociadaColaboradorDTO = new SolicitacaoAssociadaColaboradorDTO(null,emailUsuario,colaboradoresDTO.nome(),colaboradoresDTO.numero(),colaboradoresDTO.cpf(),colaboradoresDTO.filial(),colaboradoresDTO.cargo(),colaboradoresDTO.departamento(),null,status, tipo, LocalDateTime.now());
             solicitacaoAssociadaColaboradorService.createdSolicitacaoAssociadaColaborador(solicitacaoAssociadaColaboradorDTO);
 
             dadosColaboradoresRepository.save(existingColaborador);
@@ -126,7 +127,7 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
 
             String status_em_aberto = "Em aberto";
             String tipo_acesso = "Solicitação de acessos";
-            SolicitacaoAssociadaColaboradorDTO solicitacaoAssociadaColaboradorDTO = new SolicitacaoAssociadaColaboradorDTO(null, emailUsuario, colaboradoresDTO.nome(), colaboradoresDTO.numero(), colaboradoresDTO.cpf(), colaboradoresDTO.filial(), colaboradoresDTO.cargo(), colaboradoresDTO.departamento(), emailUsuario, status_em_aberto, tipo_acesso, null);
+            SolicitacaoAssociadaColaboradorDTO solicitacaoAssociadaColaboradorDTO = new SolicitacaoAssociadaColaboradorDTO(null, emailUsuario, colaboradoresDTO.nome(), colaboradoresDTO.numero(), colaboradoresDTO.cpf(), colaboradoresDTO.filial(), colaboradoresDTO.cargo(), colaboradoresDTO.departamento(), emailUsuario, status_em_aberto, tipo_acesso, LocalDateTime.now());
             solicitacaoAssociadaColaboradorService.createdSolicitacaoAssociadaColaborador(solicitacaoAssociadaColaboradorDTO);
 
             FeriasDTO feriasDTO = new FeriasDTO(null, colaboradoresDTO.cpf(), null, null, emailUsuario);
@@ -240,7 +241,7 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
 
         String status_solicitacao = "Em aberto";
         String tipo_solicitacao = "Solicitação de desligamento";
-        SolicitacaoAssociadaColaboradorDTO solicitacaoAssociadaColaboradorDTO = new SolicitacaoAssociadaColaboradorDTO(null,dadosColaboradores.getNome(),emailUsuario,dadosColaboradores.getNumero(),dadosColaboradores.getCpf(),dadosColaboradores.getFilial(),dadosColaboradores.getCargo(),dadosColaboradores.getDepartamento(),emailUsuario,status_solicitacao, tipo_solicitacao, null);
+        SolicitacaoAssociadaColaboradorDTO solicitacaoAssociadaColaboradorDTO = new SolicitacaoAssociadaColaboradorDTO(null,emailUsuario, dadosColaboradores.getNome(), dadosColaboradores.getNumero(),dadosColaboradores.getCpf(),dadosColaboradores.getFilial(),dadosColaboradores.getCargo(),dadosColaboradores.getDepartamento(),emailUsuario,status_solicitacao, tipo_solicitacao, LocalDateTime.now());
         solicitacaoAssociadaColaboradorService.createdSolicitacaoAssociadaColaborador(solicitacaoAssociadaColaboradorDTO);
 
         // Define o computador do colaborador como vazio
@@ -263,7 +264,7 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
 
         String status_solicitacao = "Em aberto";
         String tipo_solicitacao = "Solicitação de mudança de cargo";
-        SolicitacaoAssociadaColaboradorDTO solicitacaoAssociadaColaboradorDTO = new SolicitacaoAssociadaColaboradorDTO(null,dadosColaboradores.getNome(),emailUsuario,dadosColaboradores.getNumero(),dadosColaboradores.getCpf(),dadosColaboradores.getFilial(),dadosColaboradores.getCargo(),dadosColaboradores.getDepartamento(),emailUsuario,status_solicitacao, tipo_solicitacao, null);
+        SolicitacaoAssociadaColaboradorDTO solicitacaoAssociadaColaboradorDTO = new SolicitacaoAssociadaColaboradorDTO(null,emailUsuario,dadosColaboradores.getNome(),dadosColaboradores.getNumero(),dadosColaboradores.getCpf(),dadosColaboradores.getFilial(),dadosColaboradores.getCargo(),dadosColaboradores.getDepartamento(),emailUsuario,status_solicitacao, tipo_solicitacao, LocalDateTime.now());
         solicitacaoAssociadaColaboradorService.createdSolicitacaoAssociadaColaborador(solicitacaoAssociadaColaboradorDTO);
 
 

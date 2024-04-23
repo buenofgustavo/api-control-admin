@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +26,7 @@ public class SolicitacaoAssociadaColaboradorServiceImpl implements SolicitacaoAs
 
         SolicitacaoAssociadaColaborador newSolicitacaoAssociadaColaborador = new SolicitacaoAssociadaColaborador(solicitacaoAssociadaColaboradorDTO);
         newSolicitacaoAssociadaColaborador.setUsuario_solicitante(emailUsuario);
+        newSolicitacaoAssociadaColaborador.setDataAbertura(LocalDateTime.now());
         solicitacaoAssociadaColaboradorRepository.save(newSolicitacaoAssociadaColaborador);
     }
 

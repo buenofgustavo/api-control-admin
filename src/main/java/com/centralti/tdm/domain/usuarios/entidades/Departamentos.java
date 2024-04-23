@@ -18,11 +18,11 @@ public class Departamentos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @Column(name = "departamento")
-    private String departamento;
+    @Column(name = "departamentos")
+    private String departamentos;
 
     public Departamentos(@Valid DepartamentosDTO departamentosDTO) {
         this.id = departamentosDTO.id();
-        this.departamento = departamentosDTO.departamento();
+        this.departamentos = departamentosDTO.departamento();
     }
 }

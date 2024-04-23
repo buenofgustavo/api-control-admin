@@ -2,16 +2,17 @@ package com.centralti.tdm.domain.usuarios.DTO;
 
 import com.centralti.tdm.domain.usuarios.entidades.Departamentos;
 import com.centralti.tdm.domain.usuarios.entidades.Ferias;
+import com.centralti.tdm.domain.usuarios.entidades.Filiais;
 
-public record DepartamentosDTO(
+public record FiliaisDTO(
 
         String id,
-        String departamento
+        String filiais
 
 ) {
-    public DepartamentosDTO(Departamentos departamentos){
+    public FiliaisDTO(Filiais filiais){
         this(
-                departamentos.getId(), departamentos.getDepartamentos()
+                filiais.getId(), filiais.getFiliais()
         );
     }
 }

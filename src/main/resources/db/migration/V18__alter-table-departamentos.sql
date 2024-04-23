@@ -1,0 +1,2 @@
+ALTER TABLE departamentos
+ALTER COLUMN departamentos VARCHAR(255) NOT NULL;
