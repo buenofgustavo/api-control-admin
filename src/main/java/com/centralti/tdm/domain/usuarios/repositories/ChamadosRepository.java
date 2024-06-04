@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ChamadosRepository extends JpaRepository<Chamados, String> {
-    List<Chamados> findChamadosByStatus(Integer status);
+    List<Chamados> findChamadosByStatus(String status);
     List<Chamados> findAllByExcluidoTrue();
     List<Chamados> findAllByExcluidoFalse();
-
+    List<Chamados> findChamadosByUsuarioVinculado (String usuario);
 }

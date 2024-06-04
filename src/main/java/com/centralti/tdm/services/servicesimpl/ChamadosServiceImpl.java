@@ -1,13 +1,17 @@
 package com.centralti.tdm.services.servicesimpl;
 
+import com.centralti.tdm.domain.usuarios.DTO.ArquivosDTO;
 import com.centralti.tdm.domain.usuarios.DTO.ChamadosDTO;
+import com.centralti.tdm.domain.usuarios.entidades.Arquivos;
 import com.centralti.tdm.domain.usuarios.entidades.Chamados;
+import com.centralti.tdm.domain.usuarios.repositories.ArquivosRepository;
 import com.centralti.tdm.domain.usuarios.repositories.ChamadosRepository;
 import com.centralti.tdm.services.servicesinterface.ChamadosService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,23 +23,45 @@ public class ChamadosServiceImpl implements ChamadosService {
     @Autowired
     ChamadosRepository chamadosRepository;
 
+
+    private final Upload upload;
+
+    @Autowired
+    ArquivosRepository arquivosRepository;
+
+    @Autowired
+    public ChamadosServiceImpl(ArquivosRepository arquivosRepository) {
+        this.upload = new Upload(arquivosRepository);
+    }
+
     @Override
-    public void createChamados(ChamadosDTO chamadosDTO) {
+    public String createChamados(ChamadosDTO chamadosDTO) {
+
+        Chamados newChamados = new Chamados(chamadosDTO);
 
         String emailUsuario = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        Chamados newChamados = new Chamados(chamadosDTO);
-        newChamados.setStatus(0);
+        newChamados.setStatus("Em aberto");
         newChamados.setAtualizado_por(emailUsuario);
-        newChamados.setUsuario_vinculado(emailUsuario);
+        newChamados.setUsuarioVinculado(emailUsuario);
         newChamados.setExcluido(false);
-        chamadosRepository.save(newChamados);
+        Chamados savedChamados = chamadosRepository.save(newChamados);
+
+        return savedChamados.getId();
     }
 
+    @Override
+    public void createArquivosChamados(List<MultipartFile> files, String id) {
 
-    public void editChamados(ChamadosDTO chamadosDTO) {
-        var id = chamadosDTO.id();
-        var status = chamadosDTO.status();
+        try {
+            upload.fazerUploadImagem(files, id);
+            System.out.println("Salvo com sucesso: " + id);
+        } catch (Exception e) {
+            System.out.println("Erro ao salvar " + e.getMessage());
+        }
+    }
+
+    public void editChamados(String id, String status) {
         Optional<Chamados> optionalChamados = chamadosRepository.findById(id);
         if(optionalChamados.isPresent()){
             Chamados chamados = optionalChamados.get();
@@ -57,8 +83,18 @@ public class ChamadosServiceImpl implements ChamadosService {
                 .collect(Collectors.toList());
     }
 
-    public List<ChamadosDTO> FindAllChamadosExcluidos() {
-        List<Chamados> allChamados = chamadosRepository.findAllByExcluidoTrue();
+    @Override
+    public List<ArquivosDTO> findAllArquivos(String id) {
+        List<Arquivos> allChamados = arquivosRepository.findArquivosByNumeroChamado(id);
+        return allChamados.stream()
+                .map(ArquivosDTO::new)
+                .collect(Collectors.toList());
+    }
+
+
+
+    public List<ChamadosDTO> FindChamadosByUsuario(String usuario) {
+        List<Chamados> allChamados = chamadosRepository.findChamadosByUsuarioVinculado(usuario);
         return allChamados.stream()
                 .map(ChamadosDTO::new)
                 .collect(Collectors.toList());
@@ -70,11 +106,11 @@ public class ChamadosServiceImpl implements ChamadosService {
         return new ChamadosDTO(chamados);
     }
 
-    public List<ChamadosDTO> findChamadosByStatus(Integer status) {
-            List<Chamados> allChamados = chamadosRepository.findChamadosByStatus(status);
-            return allChamados.stream()
-                    .map(ChamadosDTO::new)
-                    .collect(Collectors.toList());
+    public List<ChamadosDTO> findChamadosByStatus(String status) {
+        List<Chamados> allChamados = chamadosRepository.findChamadosByStatus(status);
+        return allChamados.stream()
+                .map(ChamadosDTO::new)
+                .collect(Collectors.toList());
     }
 
     public void deleteChamados(String id) {

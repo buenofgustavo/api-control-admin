@@ -1,0 +1,5 @@
+ALTER TABLE chamados
+ALTER COLUMN status VARCHAR(255);
+
+ALTER TABLE chamados
+DROP COLUMN anexo;
