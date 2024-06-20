@@ -106,8 +106,13 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
         // Verifica se já existe um registro com o mesmo CPF
         DadosColaboradores existingColaborador = dadosColaboradoresRepository.findByCpf(cpf);
         if (existingColaborador != null && !existingColaborador.getStatus()) {
-            // Se o registro existir e o status for false, atualiza apenas o status para true
             existingColaborador.setStatus(true);
+            existingColaborador.setNumero(colaboradoresDTO.numero());
+            existingColaborador.setCargo(colaboradoresDTO.cargo());
+            existingColaborador.setFilial(colaboradoresDTO.filial());
+            existingColaborador.setDepartamento(colaboradoresDTO.departamento());
+            existingColaborador.setRegimeContratacao(colaboradoresDTO.regimeContratacao());
+            existingColaborador.setTermo(false);
             existingColaborador.setAtualizado_por(emailUsuario);
 
             String status = "Em aberto";

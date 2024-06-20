@@ -11,5 +11,7 @@ public interface ComputadoresService {
     ComputadoresDTO findByComputadores(String MAC);
     List<ComputadoresDTO> FindAllComputadorComUsuario();
     List<ComputadoresDTO> FindAllComputadorSemUsuario();
+    void deletarComputador(String MAC);
+    void salvarSerial(String MAC,String serial);
 
 }

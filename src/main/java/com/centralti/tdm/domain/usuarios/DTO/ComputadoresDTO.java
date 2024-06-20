@@ -4,48 +4,53 @@ import com.centralti.tdm.domain.usuarios.entidades.Computadores;
 
 public record ComputadoresDTO (
 
-    String id,
+        String id,
 
-    String nomeUsuario,
+        String nomeUsuario,
 
-    String nomeComputador,
+        String nomeComputador,
 
-    String localizacao,
+        String localizacao,
 
-    String memoriaRam,
+        String memoriaRam,
 
-    String capacidadeArmazenamento,
+        String capacidadeArmazenamento,
 
-    String marca,
+        String marca,
 
-    String modelo,
+        String modelo,
 
-    String processador,
+        String processador,
 
-    String sistemaOperacional,
+        String sistemaOperacional,
 
-    String makroInstalado,
+        String makroInstalado,
 
-    String versaoMakro,
+        String versaoMakro,
 
-    String enderecoMac,
+        String enderecoMac,
 
-    String userAtual,
+        String userAtual,
 
-    String lastUser,
+        String lastUser,
 
-    String nomeUserAtual,
+        String nomeUserAtual,
 
-    String nomeLastUser
+        String nomeLastUser,
+
+        String serial,
+
+        String atualizadoPor
 
 ) {
     public ComputadoresDTO(Computadores computadores){
-            this(
-                    computadores.getId(),computadores.getNomeUsuario(), computadores.getNomeComputador(),
-                    computadores.getLocalizacao(), computadores.getMemoriaRam(), computadores.getCapacidadeArmazenamento(),
-                    computadores.getMarca(), computadores.getModelo(), computadores.getProcessador(), computadores.getSistemaOperacional(),
-                    computadores.getMakroInstalado(), computadores.getVersaoMakro(), computadores.getEnderecoMac(), computadores.getUserAtual(),
-                    computadores.getLastUser(), computadores.getNomeUserAtual(), computadores.getNomeLastUser()
-            );
-        }
+        this(
+                computadores.getId(),computadores.getNomeUsuario(), computadores.getNomeComputador(),
+                computadores.getLocalizacao(), computadores.getMemoriaRam(), computadores.getCapacidadeArmazenamento(),
+                computadores.getMarca(), computadores.getModelo(), computadores.getProcessador(), computadores.getSistemaOperacional(),
+                computadores.getMakroInstalado(), computadores.getVersaoMakro(), computadores.getEnderecoMac(), computadores.getUserAtual(),
+                computadores.getLastUser(), computadores.getNomeUserAtual(), computadores.getNomeLastUser(),
+                computadores.getSerial(), computadores.getAtualizadoPor()
+        );
     }
+}

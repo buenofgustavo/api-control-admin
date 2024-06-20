@@ -4,12 +4,10 @@ import com.centralti.tdm.errors.ErrorResponses;
 import com.centralti.tdm.services.servicesinterface.ChamadosService;
 import com.centralti.tdm.services.servicesinterface.ComputadoresService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/computadores")
@@ -52,6 +50,28 @@ public class ComputadoresController {
             var computador = computadoresService.FindAllComputadorSemUsuario();
             return ResponseEntity.ok(computador);
         } catch (EntityNotFoundException e) {
+            ErrorResponses errorResponses = new ErrorResponses(e.getMessage());
+            return ResponseEntity.badRequest().body(errorResponses);
+        }
+    }
+
+    @DeleteMapping("/deletar/{MAC}")
+    public ResponseEntity deleteAtivos(@PathVariable String MAC) {
+        try {
+            computadoresService.deletarComputador(MAC);
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException e) {
+            ErrorResponses errorResponses = new ErrorResponses(e.getMessage());
+            return ResponseEntity.badRequest().body(errorResponses);
+        }
+    }
+
+    @PutMapping("/editar/{MAC}/{serial}")
+    public ResponseEntity editChamados(@PathVariable String MAC, @PathVariable String serial){
+        try {
+            computadoresService.salvarSerial(MAC, serial);
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException e) {
             ErrorResponses errorResponses = new ErrorResponses(e.getMessage());
             return ResponseEntity.badRequest().body(errorResponses);
         }
