@@ -4,7 +4,8 @@ public enum UserRole {
     ADMIN("ROLE_ADMIN", "Administrador"),
     USUARIO("ROLE_USUARIO", "Usuário"),
     DP("ROLE_DP", "DP"),
-    TI("ROLE_TI", "T.I");
+    TI("ROLE_TI", "T.I"),
+    COMPRAS("ROLE_COMPRAS", "COMPRAS");
 
     private String codigo;
     private String descricao;
