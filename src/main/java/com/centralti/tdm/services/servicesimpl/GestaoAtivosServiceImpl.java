@@ -63,6 +63,7 @@ public class GestaoAtivosServiceImpl implements GestaoAtivosService {
         gestaoAtivos.setStatus(gestaoAtivosDTO.status());
         gestaoAtivos.setDescricao(gestaoAtivosDTO.descricao());
         gestaoAtivos.setLocalizacao(gestaoAtivosDTO.localizacao());
+        gestaoAtivos.setSerial(gestaoAtivosDTO.serial());
         gestaoAtivos.setAtualizadoPor(emailUsuario);
 
         gestaoAtivosRepository.save(gestaoAtivos);

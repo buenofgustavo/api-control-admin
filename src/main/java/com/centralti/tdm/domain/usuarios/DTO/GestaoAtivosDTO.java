@@ -17,6 +17,8 @@ public record GestaoAtivosDTO (
 
         String localizacao,
 
+        String serial,
+
         String atualizadoPor
 
 ) {
@@ -24,7 +26,7 @@ public record GestaoAtivosDTO (
         this(
                 gestaoAtivos.getId(), gestaoAtivos.getNome(),
                 gestaoAtivos.getTipo(), gestaoAtivos.getStatus(), gestaoAtivos.getDescricao(),
-                gestaoAtivos.getLocalizacao(), gestaoAtivos.getAtualizadoPor()
+                gestaoAtivos.getLocalizacao(), gestaoAtivos.getSerial(), gestaoAtivos.getAtualizadoPor()
         );
     }
 }

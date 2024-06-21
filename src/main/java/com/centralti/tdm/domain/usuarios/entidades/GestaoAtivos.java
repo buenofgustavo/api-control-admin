@@ -34,6 +34,9 @@ public class GestaoAtivos {
     @Column(name = "localizacao")
     private String localizacao;
 
+    @Column(name = "serial")
+    private String serial;
+
     @Column(name = "atualizado_por")
     private String atualizadoPor;
 
@@ -44,6 +47,7 @@ public class GestaoAtivos {
         this.status = gestaoAtivosDTO.status();
         this.descricao = gestaoAtivosDTO.descricao();
         this.localizacao = gestaoAtivosDTO.localizacao();
+        this.serial = gestaoAtivosDTO.serial();
         this.atualizadoPor = gestaoAtivosDTO.atualizadoPor();
     }
 
