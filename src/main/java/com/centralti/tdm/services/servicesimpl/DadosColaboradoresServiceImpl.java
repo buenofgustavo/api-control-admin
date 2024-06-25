@@ -5,10 +5,7 @@ import com.centralti.tdm.domain.usuarios.entidades.Computadores;
 import com.centralti.tdm.domain.usuarios.entidades.DadosColaboradores;
 import com.centralti.tdm.domain.usuarios.repositories.ComputadoresRepository;
 import com.centralti.tdm.domain.usuarios.repositories.DadosColaboradoresRepository;
-import com.centralti.tdm.services.servicesinterface.AcessosService;
-import com.centralti.tdm.services.servicesinterface.DadosColaboradoresService;
-import com.centralti.tdm.services.servicesinterface.FeriasService;
-import com.centralti.tdm.services.servicesinterface.SolicitacaoAssociadaColaboradorService;
+import com.centralti.tdm.services.servicesinterface.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -34,6 +31,9 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
 
     @Autowired
     FeriasService feriasService;
+
+    @Autowired
+    LogComputadoresService logComputadoresService;
 
     @Override
     public List<DadosColaboradoresDTO> FindAllColaboradoresAtivos() {
@@ -174,6 +174,9 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
             computadoresRepository.save(computadores);
 
             dadosColaboradoresRepository.save(dadosColaboradores);
+
+            String mensagem = "Computador vinculado ao usuário " + dadosColaboradores.getNome() + " por " + emailUsuario;
+            logComputadoresService.createLogAutomaticoComputadores(mensagem, computadores.getEnderecoMac(), computadores.getNomeComputador());
         }
 
     }
@@ -202,6 +205,10 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
                 computadores.setNomeLastUser(dadosColaboradores.getNome());
 
                 computadoresRepository.save(computadores);
+
+                String mensagem = "Computador do usuário " + dadosColaboradores.getNome() + " desvinculado por " + emailUsuario;
+                logComputadoresService.createLogAutomaticoComputadores(mensagem, computadores.getEnderecoMac(), computadores.getNomeComputador());
+
             }
         }
 
@@ -241,6 +248,10 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
                 computadores.setNomeLastUser(dadosColaboradores.getNome());
 
                 computadoresRepository.save(computadores);
+
+                String mensagem = "Colaborador desligado: computador do usuário " + dadosColaboradores.getNome() + " desvinculado por " + emailUsuario;
+                logComputadoresService.createLogAutomaticoComputadores(mensagem, computadores.getEnderecoMac(), computadores.getNomeComputador());
+
             }
         }
 

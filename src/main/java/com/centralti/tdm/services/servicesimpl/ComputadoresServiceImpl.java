@@ -7,10 +7,13 @@ import com.centralti.tdm.domain.usuarios.entidades.Computadores;
 import com.centralti.tdm.domain.usuarios.entidades.GestaoAtivos;
 import com.centralti.tdm.domain.usuarios.repositories.ChamadosRepository;
 import com.centralti.tdm.domain.usuarios.repositories.ComputadoresRepository;
+import com.centralti.tdm.domain.usuarios.repositories.LogComputadoresRepository;
 import com.centralti.tdm.services.servicesinterface.ChamadosService;
 import com.centralti.tdm.services.servicesinterface.ComputadoresService;
+import com.centralti.tdm.services.servicesinterface.LogComputadoresService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +28,8 @@ public class ComputadoresServiceImpl implements ComputadoresService {
     @Autowired
     ComputadoresRepository computadoresRepository;
 
+    @Autowired
+    LogComputadoresService logComputadoresService;
 
     @Override
     public List<ComputadoresDTO> FindAllComputadores() {
@@ -61,6 +66,10 @@ public class ComputadoresServiceImpl implements ComputadoresService {
             Computadores computador = computadoresRepository.findByEnderecoMac(MAC);
             if (computador != null) {
                 computadoresRepository.delete(computador);
+
+                String emailUsuario = SecurityContextHolder.getContext().getAuthentication().getName();
+                String mensagem = "Computador deletado por" + emailUsuario + ", tendo como último usuário " + computador.getNomeLastUser();
+                logComputadoresService.createLogAutomaticoComputadores(mensagem, computador.getEnderecoMac(), computador.getNomeComputador());
             } else {
                 throw new IllegalArgumentException("Computador não encontrado para o MAC: " + MAC);
             }
@@ -76,6 +85,9 @@ public class ComputadoresServiceImpl implements ComputadoresService {
             computador.setSerial(serial);
             computador.setAtualizadoPor(emailUsuario);
             computadoresRepository.save(computador);
+
+            String mensagem = "Serial " + serial + " salvo por " + emailUsuario;
+            logComputadoresService.createLogAutomaticoComputadores(mensagem, computador.getEnderecoMac(), computador.getNomeComputador());
         } else {
             throw new IllegalArgumentException("Computador não encontrado para o MAC: " + MAC);
         }
