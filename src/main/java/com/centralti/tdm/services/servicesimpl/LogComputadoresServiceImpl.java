@@ -84,20 +84,6 @@ public class LogComputadoresServiceImpl implements LogComputadoresService {
             log.setUserVinculado("Log automático");
             log.setNomeUser("log@deletarcomputador");
             log.setDatahora(LocalDateTime.now());
-        } else if (tipo.equals("alterarnome")) {
-            log.setMessage(mensagem);
-            log.setMacVinculado(mac);
-            log.setComputadorVinculado(nome_computador);
-            log.setUserVinculado("Log automático");
-            log.setNomeUser("log@deletarcomputador");
-            log.setDatahora(LocalDateTime.now());
-        } else if (tipo.equals("primeirocadastro")) {
-            log.setMessage(mensagem);
-            log.setMacVinculado(mac);
-            log.setComputadorVinculado(nome_computador);
-            log.setUserVinculado("Log automático");
-            log.setNomeUser("log@deletarcomputador");
-            log.setDatahora(LocalDateTime.now());
         } else {
             log.setMessage(mensagem);
             log.setMacVinculado(mac);
