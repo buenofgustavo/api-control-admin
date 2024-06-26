@@ -69,7 +69,9 @@ public class ComputadoresServiceImpl implements ComputadoresService {
 
                 String emailUsuario = SecurityContextHolder.getContext().getAuthentication().getName();
                 String mensagem = "Computador deletado por" + emailUsuario + ", tendo como último usuário " + computador.getNomeLastUser();
-                logComputadoresService.createLogAutomaticoComputadores(mensagem, computador.getEnderecoMac(), computador.getNomeComputador());
+                String tipo = "deletar";
+
+                logComputadoresService.createLogAutomaticoComputadores(mensagem, computador.getEnderecoMac(), computador.getNomeComputador(), tipo);
             } else {
                 throw new IllegalArgumentException("Computador não encontrado para o MAC: " + MAC);
             }
@@ -87,7 +89,8 @@ public class ComputadoresServiceImpl implements ComputadoresService {
             computadoresRepository.save(computador);
 
             String mensagem = "Serial " + serial + " salvo por " + emailUsuario;
-            logComputadoresService.createLogAutomaticoComputadores(mensagem, computador.getEnderecoMac(), computador.getNomeComputador());
+            String tipo = "serial";
+            logComputadoresService.createLogAutomaticoComputadores(mensagem, computador.getEnderecoMac(), computador.getNomeComputador(), tipo);
         } else {
             throw new IllegalArgumentException("Computador não encontrado para o MAC: " + MAC);
         }

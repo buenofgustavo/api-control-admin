@@ -176,7 +176,8 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
             dadosColaboradoresRepository.save(dadosColaboradores);
 
             String mensagem = "Computador vinculado ao usuário " + dadosColaboradores.getNome() + " por " + emailUsuario;
-            logComputadoresService.createLogAutomaticoComputadores(mensagem, computadores.getEnderecoMac(), computadores.getNomeComputador());
+            String tipo = "vincular";
+            logComputadoresService.createLogAutomaticoComputadores(mensagem, computadores.getEnderecoMac(), computadores.getNomeComputador(), tipo);
         }
 
     }
@@ -207,7 +208,8 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
                 computadoresRepository.save(computadores);
 
                 String mensagem = "Computador do usuário " + dadosColaboradores.getNome() + " desvinculado por " + emailUsuario;
-                logComputadoresService.createLogAutomaticoComputadores(mensagem, computadores.getEnderecoMac(), computadores.getNomeComputador());
+                String tipo = "desvincular";
+                logComputadoresService.createLogAutomaticoComputadores(mensagem, computadores.getEnderecoMac(), computadores.getNomeComputador(), tipo);
 
             }
         }
@@ -250,7 +252,8 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
                 computadoresRepository.save(computadores);
 
                 String mensagem = "Colaborador desligado: computador do usuário " + dadosColaboradores.getNome() + " desvinculado por " + emailUsuario;
-                logComputadoresService.createLogAutomaticoComputadores(mensagem, computadores.getEnderecoMac(), computadores.getNomeComputador());
+                String tipo = "desligamento";
+                logComputadoresService.createLogAutomaticoComputadores(mensagem, computadores.getEnderecoMac(), computadores.getNomeComputador(), tipo);
 
             }
         }

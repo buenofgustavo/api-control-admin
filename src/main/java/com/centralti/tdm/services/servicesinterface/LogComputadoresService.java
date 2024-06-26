@@ -11,7 +11,7 @@ public interface LogComputadoresService {
 
         List<LogComputadoresDTO> findByMacVinculado(String macVinculado);
         void createLogComputadores(LogComputadoresDTO logComputadoresDTO);
-        void createLogAutomaticoComputadores(String mensagem, String mac, String nome_computador);
+        void createLogAutomaticoComputadores(String mensagem, String mac, String nome_computador, String tipo);
 
 
 }

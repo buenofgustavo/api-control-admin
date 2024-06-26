@@ -44,18 +44,72 @@ public class LogComputadoresServiceImpl implements LogComputadoresService {
     }
 
     @Override
-    public void createLogAutomaticoComputadores(String mensagem, String mac, String nome_computador) {
+    public void createLogAutomaticoComputadores(String mensagem, String mac, String nome_computador, String tipo) {
         String emailUsuario = SecurityContextHolder.getContext().getAuthentication().getName();
 
         LogComputadores log = new LogComputadores();
-        log.setMessage(mensagem);
-        log.setMacVinculado(mac);
-        log.setComputadorVinculado(nome_computador);
-        log.setUserVinculado("Log automático");
-        log.setNomeUser("Log@ControlAdmin");
-        log.setDatahora(LocalDateTime.now());
+
+        if(tipo.equals("desligamento")){
+            log.setMessage(mensagem);
+            log.setMacVinculado(mac);
+            log.setComputadorVinculado(nome_computador);
+            log.setUserVinculado("Log automático");
+            log.setNomeUser("log@desligamento");
+            log.setDatahora(LocalDateTime.now());
+        } else if (tipo.equals("vincular")) {
+            log.setMessage(mensagem);
+            log.setMacVinculado(mac);
+            log.setComputadorVinculado(nome_computador);
+            log.setUserVinculado("Log automático");
+            log.setNomeUser("log@vinculacao");
+            log.setDatahora(LocalDateTime.now());
+        } else if (tipo.equals("desvincular")) {
+            log.setMessage(mensagem);
+            log.setMacVinculado(mac);
+            log.setComputadorVinculado(nome_computador);
+            log.setUserVinculado("Log automático");
+            log.setNomeUser("log@desvinculacao");
+            log.setDatahora(LocalDateTime.now());
+        } else if (tipo.equals("serial")) {
+            log.setMessage(mensagem);
+            log.setMacVinculado(mac);
+            log.setComputadorVinculado(nome_computador);
+            log.setUserVinculado("Log automático");
+            log.setNomeUser("log@salvarserial");
+            log.setDatahora(LocalDateTime.now());
+        } else if (tipo.equals("deletar")) {
+            log.setMessage(mensagem);
+            log.setMacVinculado(mac);
+            log.setComputadorVinculado(nome_computador);
+            log.setUserVinculado("Log automático");
+            log.setNomeUser("log@deletarcomputador");
+            log.setDatahora(LocalDateTime.now());
+        } else if (tipo.equals("alterarnome")) {
+            log.setMessage(mensagem);
+            log.setMacVinculado(mac);
+            log.setComputadorVinculado(nome_computador);
+            log.setUserVinculado("Log automático");
+            log.setNomeUser("log@deletarcomputador");
+            log.setDatahora(LocalDateTime.now());
+        } else if (tipo.equals("primeirocadastro")) {
+            log.setMessage(mensagem);
+            log.setMacVinculado(mac);
+            log.setComputadorVinculado(nome_computador);
+            log.setUserVinculado("Log automático");
+            log.setNomeUser("log@deletarcomputador");
+            log.setDatahora(LocalDateTime.now());
+        } else {
+            log.setMessage(mensagem);
+            log.setMacVinculado(mac);
+            log.setComputadorVinculado(nome_computador);
+            log.setUserVinculado("Log automático");
+            log.setNomeUser("log@automatico");
+            log.setDatahora(LocalDateTime.now());
+        }
 
         logComputadoresRepository.save(log);
+
     }
+
 
 }
