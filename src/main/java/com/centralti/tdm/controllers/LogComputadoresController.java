@@ -42,4 +42,14 @@ public class LogComputadoresController {
         }
     }
 
+    @GetMapping("/listar-all")
+    public ResponseEntity<List<LogComputadoresDTO>> getAll() {
+        try {
+            List<LogComputadoresDTO> messages = logComputadoresService.findAll();
+            return ResponseEntity.ok(messages);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
 }

@@ -30,6 +30,14 @@ public class LogComputadoresServiceImpl implements LogComputadoresService {
     }
 
     @Override
+    public List<LogComputadoresDTO> findAll() {
+        List<LogComputadores> chatMessages = logComputadoresRepository.findAll();
+        return chatMessages.stream()
+                .map(LogComputadoresDTO::new)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void createLogComputadores(LogComputadoresDTO logComputadoresDTO) {
 
         LocalDateTime dataHoraAtual = LocalDateTime.now();
