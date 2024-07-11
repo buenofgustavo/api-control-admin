@@ -67,9 +67,20 @@ public class ComputadoresController {
     }
 
     @PutMapping("/editar/{MAC}/{serial}")
-    public ResponseEntity editChamados(@PathVariable String MAC, @PathVariable String serial){
+    public ResponseEntity editSerial(@PathVariable String MAC, @PathVariable String serial){
         try {
             computadoresService.salvarSerial(MAC, serial);
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException e) {
+            ErrorResponses errorResponses = new ErrorResponses(e.getMessage());
+            return ResponseEntity.badRequest().body(errorResponses);
+        }
+    }
+
+    @PutMapping("/editar-status/{MAC}/{status}")
+    public ResponseEntity editStatus(@PathVariable String MAC, @PathVariable String status){
+        try {
+            computadoresService.salvarStatus(MAC, status);
             return ResponseEntity.ok().build();
         } catch (RuntimeException e) {
             ErrorResponses errorResponses = new ErrorResponses(e.getMessage());

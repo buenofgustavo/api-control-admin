@@ -96,4 +96,22 @@ public class ComputadoresServiceImpl implements ComputadoresService {
         }
     }
 
+    @Override
+    public void salvarStatus(String MAC, String status) {
+        Computadores computador = computadoresRepository.findByEnderecoMac(MAC);
+        if (computador != null) {
+            String emailUsuario = SecurityContextHolder.getContext().getAuthentication().getName();
+
+            computador.setStatus(status);
+            computador.setAtualizadoPor(emailUsuario);
+            computadoresRepository.save(computador);
+
+            String mensagem = "Status " + status + " salvo por " + emailUsuario;
+            String tipo = "status";
+            logComputadoresService.createLogAutomaticoComputadores(mensagem, computador.getEnderecoMac(), computador.getNomeComputador(), tipo);
+        } else {
+            throw new IllegalArgumentException("Computador não encontrado para o MAC: " + MAC);
+        }
+    }
+
 }

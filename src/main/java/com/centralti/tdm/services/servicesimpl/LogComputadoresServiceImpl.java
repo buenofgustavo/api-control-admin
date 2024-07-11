@@ -85,6 +85,13 @@ public class LogComputadoresServiceImpl implements LogComputadoresService {
             log.setUserVinculado("Log automático");
             log.setNomeUser("log@salvarserial");
             log.setDatahora(LocalDateTime.now());
+        } else if (tipo.equals("status")) {
+            log.setMessage(mensagem);
+            log.setMacVinculado(mac);
+            log.setComputadorVinculado(nome_computador);
+            log.setUserVinculado("Log automático");
+            log.setNomeUser("log@status");
+            log.setDatahora(LocalDateTime.now());
         } else if (tipo.equals("deletar")) {
             log.setMessage(mensagem);
             log.setMacVinculado(mac);

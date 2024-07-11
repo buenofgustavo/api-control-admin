@@ -13,5 +13,6 @@ public interface ComputadoresService {
     List<ComputadoresDTO> FindAllComputadorSemUsuario();
     void deletarComputador(String MAC);
     void salvarSerial(String MAC,String serial);
+    void salvarStatus(String MAC,String status);
 
 }

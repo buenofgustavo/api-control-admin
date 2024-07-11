@@ -148,6 +148,7 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
         DadosColaboradores dadosColaboradores = dadosColaboradoresRepository.findByCpf(cpf);
 
         Computadores computadores = computadoresRepository.findByEnderecoMac(computador);
+        String statusVazio = null;
 
         if (computadores == null) {
             // Se o computador não for encontrado, lança uma exceção ou trata o erro de outra forma
@@ -168,7 +169,7 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
             Boolean termo = false;
             dadosColaboradores.setTermo(termo);
 
-
+            computadores.setStatus(statusVazio);
             computadores.setUserAtual(cpf);
             computadores.setNomeUserAtual(dadosColaboradores.getNome());
             computadoresRepository.save(computadores);
@@ -191,6 +192,7 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
         String userVazio = null;
 
         String emailUsuario = SecurityContextHolder.getContext().getAuthentication().getName();
+        String statusVazio = null;
 
         // Verifica se o MAC do computador não é vazio
         if (mac != null && !mac.isEmpty()) {
@@ -204,6 +206,7 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
 
                 computadores.setLastUser(cpf);
                 computadores.setNomeLastUser(dadosColaboradores.getNome());
+                computadores.setStatus(statusVazio);
 
                 computadoresRepository.save(computadores);
 
@@ -237,6 +240,7 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
         String mac = dadosColaboradores.getComputador();
         String computadorVazio = null;
         String userVazio = null;
+        String statusVazio = null;
 
         // Verifica se o MAC do computador não é vazio
         if (mac != null && !mac.isEmpty()) {
@@ -248,7 +252,7 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
 
                 computadores.setLastUser(cpf);
                 computadores.setNomeLastUser(dadosColaboradores.getNome());
-
+                computadores.setStatus(statusVazio);
                 computadoresRepository.save(computadores);
 
                 String mensagem = "Colaborador desligado: computador do usuário " + dadosColaboradores.getNome() + " desvinculado por " + emailUsuario;

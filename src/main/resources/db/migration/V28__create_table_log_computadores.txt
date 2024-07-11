@@ -1,0 +1,11 @@
+CREATE TABLE log_computadores(
+
+            id INT PRIMARY KEY IDENTITY(1,1),
+            message VARCHAR(255),
+            nome_user VARCHAR(255),
+            user_vinculado VARCHAR(255),
+            mac_vinculado VARCHAR(255),
+            computador_vinculado VARCHAR(255),
+            datahora DATETIME DEFAULT GETDATE()
+
+)

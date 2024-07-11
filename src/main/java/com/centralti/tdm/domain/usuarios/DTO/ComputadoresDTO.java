@@ -40,6 +40,8 @@ public record ComputadoresDTO (
 
         String serial,
 
+        String status,
+
         String atualizadoPor
 
 ) {
@@ -50,7 +52,7 @@ public record ComputadoresDTO (
                 computadores.getMarca(), computadores.getModelo(), computadores.getProcessador(), computadores.getSistemaOperacional(),
                 computadores.getMakroInstalado(), computadores.getVersaoMakro(), computadores.getEnderecoMac(), computadores.getUserAtual(),
                 computadores.getLastUser(), computadores.getNomeUserAtual(), computadores.getNomeLastUser(),
-                computadores.getSerial(), computadores.getAtualizadoPor()
+                computadores.getSerial(), computadores.getStatus(), computadores.getAtualizadoPor()
         );
     }
 }

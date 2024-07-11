@@ -68,6 +68,9 @@ public class Computadores {
     @Column(name = "serial")
     private String serial;
 
+    @Column(name = "status")
+    private String status;
+
     @Column(name = "atualizado_por")
     private String atualizadoPor;
 
@@ -90,6 +93,7 @@ public class Computadores {
         this.nomeUserAtual = computadoresDTO.nomeUserAtual();
         this.nomeLastUser = computadoresDTO.nomeLastUser();
         this.serial = computadoresDTO.serial();
+        this.status = computadoresDTO.status();
         this.atualizadoPor = computadoresDTO.atualizadoPor();
     }
 
