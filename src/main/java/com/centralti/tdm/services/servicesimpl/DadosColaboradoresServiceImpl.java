@@ -192,7 +192,7 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
         String userVazio = null;
 
         String emailUsuario = SecurityContextHolder.getContext().getAuthentication().getName();
-        String statusVazio = null;
+        String status = "Alerta";
 
         // Verifica se o MAC do computador não é vazio
         if (mac != null && !mac.isEmpty()) {
@@ -206,7 +206,7 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
 
                 computadores.setLastUser(cpf);
                 computadores.setNomeLastUser(dadosColaboradores.getNome());
-                computadores.setStatus(statusVazio);
+                computadores.setStatus(status);
 
                 computadoresRepository.save(computadores);
 

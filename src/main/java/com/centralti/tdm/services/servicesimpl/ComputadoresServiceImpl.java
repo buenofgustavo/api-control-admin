@@ -68,7 +68,7 @@ public class ComputadoresServiceImpl implements ComputadoresService {
                 computadoresRepository.delete(computador);
 
                 String emailUsuario = SecurityContextHolder.getContext().getAuthentication().getName();
-                String mensagem = "Computador deletado por" + emailUsuario + ", tendo como último usuário " + computador.getNomeLastUser();
+                String mensagem = "Computador deletado por " + emailUsuario + ", tendo como último usuário " + computador.getNomeLastUser();
                 String tipo = "deletar";
 
                 logComputadoresService.createLogAutomaticoComputadores(mensagem, computador.getEnderecoMac(), computador.getNomeComputador(), tipo);
