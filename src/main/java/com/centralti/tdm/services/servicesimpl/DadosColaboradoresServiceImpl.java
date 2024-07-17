@@ -192,7 +192,7 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
         String userVazio = null;
 
         String emailUsuario = SecurityContextHolder.getContext().getAuthentication().getName();
-        String status = "Alerta";
+        String status = "ALERTA";
 
         // Verifica se o MAC do computador não é vazio
         if (mac != null && !mac.isEmpty()) {
@@ -240,7 +240,7 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
         String mac = dadosColaboradores.getComputador();
         String computadorVazio = null;
         String userVazio = null;
-        String statusVazio = null;
+        String status1 = "ALERTA";
 
         // Verifica se o MAC do computador não é vazio
         if (mac != null && !mac.isEmpty()) {
@@ -252,7 +252,7 @@ public class DadosColaboradoresServiceImpl implements DadosColaboradoresService 
 
                 computadores.setLastUser(cpf);
                 computadores.setNomeLastUser(dadosColaboradores.getNome());
-                computadores.setStatus(statusVazio);
+                computadores.setStatus(status1);
                 computadoresRepository.save(computadores);
 
                 String mensagem = "Colaborador desligado: computador do usuário " + dadosColaboradores.getNome() + " desvinculado por " + emailUsuario;

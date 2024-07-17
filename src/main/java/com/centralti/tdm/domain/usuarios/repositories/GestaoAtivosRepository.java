@@ -8,4 +8,8 @@ import java.util.List;
 public interface GestaoAtivosRepository extends JpaRepository<GestaoAtivos, String> {
     List<GestaoAtivos> findAllByTipo(String tipo);
     GestaoAtivos findById(Integer id);
+    List<GestaoAtivos> findByLocalizacaoAndAtualizadoPor(String localizacao, String atualizadoPor);
+    List<GestaoAtivos> findByLocalizacao(String localizacao);
+    List<GestaoAtivos> findByAtualizadoPor(String atualizadoPor);
+
 }
